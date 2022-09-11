@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { TimerModule } from '../timer/timer.module';
 
 @NgModule({
   declarations: [HistoryPageComponent, ConfirmDialogComponent],
@@ -21,6 +22,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
+    TimerModule,
   ],
 })
 export class HistoryModule {}

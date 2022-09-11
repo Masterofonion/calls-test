@@ -7,11 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-
-import { TimerPipe } from 'src/app/pipes/timer.pipe';
+import { TimerModule } from '../timer/timer.module';
 
 @NgModule({
-  declarations: [CallsPageComponent, TimerPipe],
+  declarations: [CallsPageComponent],
   // exports: [CallsPageComponent],
   imports: [
     CommonModule,
@@ -20,6 +19,7 @@ import { TimerPipe } from 'src/app/pipes/timer.pipe';
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
+    TimerModule,
   ],
 })
 export class CallsModule {}

@@ -40,7 +40,7 @@
         ><span class="cell">{{
           historyItem.finish | date: "dd.MM.YY, HH:mm:ss"
         }}</span>
-        <span class="cell length">{{ historyItem.length }}</span>
+        <span class="cell length">{{ historyItem.length | timer }}</span>
         <span
           ><button (click)="deleteCallFromHistory(historyItem)" mat-icon-button>
             <mat-icon color="primary">delete</mat-icon>
