@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CurrentCall } from 'src/app/model/model';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-calls-page',
@@ -16,9 +19,19 @@ export class CallsPageComponent implements OnInit {
 
   timer: any = null;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  currentCall: CurrentCall | null = null;
+
+  currentUser = '';
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private auth: AuthService,
+    private data: DataService
+  ) {}
 
   ngOnInit(): void {
+    this.data.getHistory();
+    this.currentUser = this.auth.getCurrentUser();
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       this.mediaRecorder = new MediaRecorder(stream);
       this.initListener();
@@ -27,6 +40,8 @@ export class CallsPageComponent implements OnInit {
   }
   startRecording() {
     if (this.mediaRecorder) {
+      this.currentCall = new CurrentCall(this.currentUser);
+      this.currentCall.start = new Date().toString();
       this.mediaRecorder.start();
       console.log(this.mediaRecorder);
       this.startTimer();
@@ -38,6 +53,12 @@ export class CallsPageComponent implements OnInit {
       this.mediaRecorder.stop();
       this.isRecordingStarted = false;
       this.isPlaybackStarted = true;
+      if (this.currentCall && this.timerValue) {
+        this.currentCall.finish = new Date().toString();
+        this.currentCall.length = this.timerValue;
+        this.data.saveCall(this.currentCall);
+        this.currentCall = null;
+      }
       if (this.timer) {
         clearInterval(this.timer);
         this.timer = null;
@@ -73,4 +94,5 @@ export class CallsPageComponent implements OnInit {
       }
     }, 1000);
   }
+  saveCall() {}
 }

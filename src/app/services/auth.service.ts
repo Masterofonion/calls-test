@@ -21,4 +21,11 @@ export class AuthService {
       return false;
     }
   }
+  getCurrentUser() {
+    let user = localStorage.getItem(this.loginPropertyName);
+    if (user) {
+      return JSON.parse(user).userName;
+    }
+    return 'unknownUser';
+  }
 }

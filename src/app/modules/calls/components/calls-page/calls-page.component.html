@@ -2,6 +2,7 @@
   <mat-toolbar color="primary">
     <button
       mat-icon-button
+      [matMenuTriggerFor]="menu"
       class="example-icon"
       aria-label="Example icon-button with menu icon"
     >
@@ -10,6 +11,10 @@
     <span>Главная</span>
     <span class="example-spacer"></span>
   </mat-toolbar>
+  <mat-menu #menu="matMenu">
+    <button routerLink="/" mat-menu-item>Главная</button>
+    <button routerLink="/history" mat-menu-item>Журнал</button>
+  </mat-menu>
   <div class="content">
     <div class="animation-wrapper">
       <div *ngIf="isPlaybackStarted" class="animation-wrapper">

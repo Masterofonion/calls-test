@@ -1,1 +1,52 @@
-<p>history-page works!</p>
+<section class="page">
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Главная</span>
+    <span class="example-spacer"></span>
+    <button
+      (click)="logout()"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-menu #menu="matMenu">
+    <button routerLink="/" mat-menu-item>Главная</button>
+    <button routerLink="/history" mat-menu-item>Журнал</button>
+  </mat-menu>
+  <div class="content">
+    <div class="table">
+      <div class="row">
+        <span class="cell fw-500 header">Пользователь</span
+        ><span class="cell fw-500 header">Начало разговора</span
+        ><span class="cell fw-500 header">Конец разговора</span
+        ><span class="cell fw-500 length header">Длительность разговора</span>
+        <span class="icon-placeholder"></span>
+      </div>
+      <div class="row" *ngFor="let historyItem of history">
+        <span class="cell">{{ historyItem.user }}</span>
+        <span class="cell">{{
+          historyItem.start | date: "dd.MM.YY, HH:mm:ss"
+        }}</span
+        ><span class="cell">{{
+          historyItem.finish | date: "dd.MM.YY, HH:mm:ss"
+        }}</span>
+        <span class="cell length">{{ historyItem.length }}</span>
+        <span
+          ><button (click)="deleteCallFromHistory(historyItem)" mat-icon-button>
+            <mat-icon color="primary">delete</mat-icon>
+          </button></span
+        >
+      </div>
+    </div>
+  </div>
+</section>
