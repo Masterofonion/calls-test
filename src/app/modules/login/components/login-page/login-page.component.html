@@ -1,1 +1,21 @@
-<p>login-page works!</p>
+<section>
+  <div class="form">
+    <h2>Регистрация</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Логин</mat-label>
+      <input [(ngModel)]="login" matInput placeholder="Логин" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Пароль</mat-label>
+      <input [(ngModel)]="password" matInput placeholder="Пароль" />
+    </mat-form-field>
+    <button
+      (click)="loginUser()"
+      [disabled]="!login || !password"
+      mat-flat-button
+      color="primary"
+    >
+      Войти
+    </button>
+  </div>
+</section>

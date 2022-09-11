@@ -1,1 +1,52 @@
-<p>calls-page works!</p>
+<section class="page">
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Главная</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <div class="content">
+    <div class="animation-wrapper">
+      <div *ngIf="isPlaybackStarted" class="animation-wrapper">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </div>
+    <div class="timer-wrapper">
+      <span *ngIf="timerValue || timerValue === 0">{{
+        timerValue | timer
+      }}</span>
+    </div>
+    <div>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!mediaRecorder || isRecordingStarted"
+        (click)="startRecording()"
+      >
+        Начать разговор
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!isRecordingStarted"
+        (click)="stopRecording()"
+      >
+        Закончить разговор
+      </button>
+    </div>
+  </div>
+</section>
